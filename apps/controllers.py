@@ -8,19 +8,11 @@ from form import JoinForm, LoginForm
 from sqlalchemy import desc
 import pusher
 
-
+# 메인페이지 입니다
 @app.route('/')
 @app.route('/index')
 def index():
-	content = {}
-	# content['article_list'] = Article.query.all()
-	rows = Article.query.count()
-	rows = rows-5
-
-	content['article_list'] = Article.query.order_by(desc(Article.date_created)).filter(Article.id>rows)
-
-
-	return render_template("list.html", content = content, active_tab = "index")
+	return render_template('index.html')
 
 @app.route('/new', methods = ['GET', 'POST'])
 def new_article():
